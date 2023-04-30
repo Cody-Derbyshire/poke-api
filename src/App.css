@@ -68,6 +68,7 @@
 
 .pokemon-image {
   filter: drop-shadow(0 0 0.75rem var(--bg-color));
+  max-width: 100%;
 }
 
 .title-wrapper {
