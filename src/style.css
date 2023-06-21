@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  image-rendering: pixelated;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.main {
+}
+
+.left {
+  height: 100vh;
+  background-color: #f0f1f7;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  backdrop-filter: blur(10px);
+  overflow-x: hidden;
+  transition: 0.2s ease-in-out;
+}
+
+.closebtn {
+  font-size: 2rem;
+}
+
+.right a {
+  text-decoration: none;
+  color: inherit;
+
+  cursor: pointer;
+}
+
+.card-id {
+  padding-left: 1rem;
+  padding-top: 1rem;
+
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+.card-wrapper {
+  overflow: auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+.poke-card {
+  display: flex;
+  justify-content: center;
+
+  width: 40vw;
+
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  padding-top: 2.5rem;
+  margin-top: 4rem;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+}
+
+.poke-name {
+  text-align: center;
+  font-weight: bold;
+}
+
+.poke-card:hover {
+  border: 2px solid #cbcbcb;
+}
+
+.poke-card:hover .card-img {
+  transform: scale(1.15);
+  box-shadow: black;
+}
+
+.card-img {
+  transition-duration: 100ms;
+  height: 6rem;
+  position: absolute;
+  top: -3.25rem;
+}
+
+.shape {
+  display: block;
+  width: 80%;
+  height: 25%;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  filter: blur(50px);
+}
+
+.poke-content {
+  text-align: center;
+  position: relative;
+}
+
+.modal-img {
+  width: 10rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 25rem) {
+  .card-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .poke-card {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 40rem) {
+  .card-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .poke-card {
+    width: 30vw;
+  }
+}

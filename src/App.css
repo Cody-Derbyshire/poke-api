@@ -20,6 +20,21 @@
   --fairy-color: #ee99ac;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -86,11 +101,6 @@
   margin-right: 1rem;
 }
 
-.type-container {
-  display: flex;
-  margin: 1rem;
-}
-
 .pokemon-title {
   margin-left: 1rem;
 }
@@ -108,27 +118,26 @@
   text-transform: capitalize;
 }
 
-.randButton {
-  margin: 1rem 0;
-  padding: 1rem;
-  border-radius: 3rem;
-  font-size: 2rem;
-  background-color: #ffffff3a;
-  border: none;
-  color: #ffffff;
+.type-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
 }
-
-.randButton:hover {
-  cursor: pointer;
-  background-color: #ffffff6f;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-}
-
 .type-pill {
   padding: 0.2rem 0.5rem;
   border-radius: 2rem;
-  margin-right: 0.5rem;
+  width: min-content;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #fff;
+}
+.modal-type-pill {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  width: min-content;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #fff;
 }
 
 .normal {
@@ -184,4 +193,43 @@
 }
 .fairy {
   background-color: var(--fairy-color);
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
