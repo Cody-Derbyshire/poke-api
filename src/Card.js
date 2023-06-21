@@ -43,7 +43,7 @@ const Card = ({ pokemon, loading }) => {
             <h1>Loading...</h1>
           ) : (
             pokemon
-              .filter((el, i) => i % 2 !== 0)
+              /* .filter((el, i) => i % 2 !== 0) */
               .map((item) => {
                 return (
                   <div
