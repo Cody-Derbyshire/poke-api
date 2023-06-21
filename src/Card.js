@@ -22,6 +22,7 @@ const Card = ({ pokemon, loading }) => {
     );
     setType1(res.types?.[0]?.type?.name);
     setType2(res.types?.[1]?.type?.name);
+    openNav();
   };
 
   /* Open when someone clicks on the span element */
@@ -48,10 +49,7 @@ const Card = ({ pokemon, loading }) => {
                   <div
                     key={item.id}
                     className='poke-card'
-                    onClick={() => {
-                      openNav();
-                      openPokeInfo(item);
-                    }}
+                    onClick={() => openPokeInfo(item)}
                   >
                     <img
                       className='card-img'
