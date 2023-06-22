@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
 :root {
-  --card-width: 50vw;
+  --card-width: 60vw;
   --card-width-2-col: 40vw;
   --card-width-3-col: 28vw;
   --card-width-4-col: 20vw;
