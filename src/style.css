@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
+:root {
+  --card-width: 50vw;
+  --card-width-2-col: 40vw;
+  --card-width-3-col: 28vw;
+  --card-width-4-col: 20vw;
+  --card-width-5-col: 15vw;
+  --card-width-6-col: 12vw;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +17,12 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 
+.body {
+  background-color: #f0f1f7;
+}
+
 .left {
-  height: 100vh;
+  background-color: #f0f1f7;
 }
 
 .right {
@@ -28,10 +41,6 @@
   transition: 0.2s ease-in-out;
 }
 
-.closebtn {
-  font-size: 2rem;
-}
-
 .right a {
   text-decoration: none;
   color: inherit;
@@ -40,109 +49,170 @@
 }
 
 .card-id {
-  padding-left: 1rem;
-  padding-top: 1rem;
-
   font-weight: bold;
+  font-size: 1.5rem;
   opacity: 0.5;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
 }
 
 .card-wrapper {
   overflow: auto;
   background-color: #f0f1f7;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
+  padding: 0 1rem;
 }
 .poke-card {
   display: flex;
-  justify-content: center;
 
-  width: 40vw;
-
+  width: var(--card-width);
   cursor: pointer;
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
-  border: 2px solid rgba(255, 255, 255, 0.18);
-  padding-top: 2.5rem;
-  margin-top: 4rem;
-  border-radius: 0.625rem;
 
+  padding: 4rem 1rem 1rem;
+  margin: 6rem auto 0;
+  border-radius: 0.625rem;
   position: relative;
 }
+.poke-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(13, 16, 58, 0.591);
+  transition: 0.2s ease-in-out;
+}
 
+.poke-card:hover .card-img {
+  transform: scale(1.15);
+  transition: 0.2s ease-in-out;
+}
 .poke-name {
-  text-align: center;
+  font-size: 2rem;
+
   font-weight: bold;
 }
 .poke-name::first-letter {
   text-transform: capitalize;
 }
 
-.poke-card:hover {
-  border: 2px solid #cbcbcb;
-}
-
-.poke-card:hover .card-img {
-  transform: scale(1.15);
-  box-shadow: black;
-}
-
 .card-img {
   transition-duration: 100ms;
-  height: 6rem;
+  height: 10rem;
   position: absolute;
-  top: -3.25rem;
+  top: -5rem;
+  right: -2.5rem;
+}
+
+.name-id-container {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 1rem;
+  gap: 0.5rem;
 }
 
 .type-container {
   display: flex;
   gap: 0.5rem;
-  justify-content: center;
 }
 
 .type-pill {
-  padding: 0.2rem 0.5rem;
-  border-radius: 2rem;
-  width: min-content;
-  font-size: 0.75rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
   color: #fff;
+  border-radius: 6rem;
 }
 
 .shape {
   display: block;
-  width: 80%;
-  height: 25%;
-
+  width: 50%;
+  height: 50%;
+  opacity: 0.6;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 25%;
+  right: 25%;
+  transform: translate(50%, -50%);
   z-index: -1;
   filter: blur(40px);
 }
 
-.poke-content {
-  text-align: center;
-  position: relative;
+@media screen and (min-width: 35rem) {
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .poke-card {
+    width: var(--card-width-2-col);
+  }
+  .poke-name {
+    font-size: 1.5rem;
+  }
+  .card-id {
+    font-size: 1.25rem;
+  }
+}
+@media screen and (min-width: 50rem) {
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .poke-card {
+    width: var(--card-width-3-col);
+  }
+}
+@media screen and (min-width: 65rem) {
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .poke-card {
+    width: var(--card-width-4-col);
+  }
+}
+@media screen and (min-width: 80rem) {
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .poke-card {
+    width: var(--card-width-5-col);
+  }
+}
+@media screen and (min-width: 100rem) {
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  .poke-card {
+    width: var(--card-width-6-col);
+  }
 }
 
 .modal-wrapper {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border: 2px solid rgba(255, 255, 255, 0.18);
   padding: 4rem 4rem 1rem;
   border-radius: 0.625rem;
   position: relative;
   gap: 1rem;
+  margin: 0 1rem;
 }
 
 .modal-img {
-  width: 10rem;
+  height: 10rem;
   margin: 0 auto;
   position: absolute;
   top: -5rem;
@@ -154,7 +224,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: 5rem;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border: 2px solid rgba(255, 255, 255, 0.18);
   border-radius: 2rem;
@@ -185,6 +255,7 @@
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
+  margin: 0.5rem 0;
 }
 
 .modal-type-pill {
@@ -250,20 +321,9 @@
   border-radius: 2rem;
 }
 
-@media screen and (max-width: 25rem) {
-  .card-wrapper {
-    grid-template-columns: 1fr;
-  }
-  .poke-card {
-    width: 50vw;
-  }
-}
-
-@media screen and (min-width: 40rem) {
-  .card-wrapper {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .poke-card {
-    width: 30vw;
-  }
+.modal-closebtn:hover,
+.modal-closebtn:focus {
+  opacity: 0.75;
+  box-shadow: 0 8px 32px 0 rgba(13, 16, 58, 0.591);
+  border: 2px solid #cbcbcb;
 }

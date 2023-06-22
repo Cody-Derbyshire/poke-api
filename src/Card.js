@@ -23,6 +23,7 @@ const Card = ({ pokemon, loading }) => {
   const [totalStat, setTotalStat] = useState('');
 
   const openPokeInfo = async (res) => {
+    const id = res.id;
     const hp = res.stats?.[0]?.base_stat;
     const atk = res.stats?.[1]?.base_stat;
     const def = res.stats?.[2]?.base_stat;
@@ -30,17 +31,24 @@ const Card = ({ pokemon, loading }) => {
     const spd = res.stats?.[4]?.base_stat;
     const speed = res.stats?.[5]?.base_stat;
     const total = hp + atk + def + spa + spd + speed;
+    const img =
+      res.sprites?.versions?.['generation-v']?.['black-white']?.animated
+        .front_default;
+
+    const t1 = res.types?.[0]?.type?.name;
+    const t2 = res.types?.[1]?.type?.name;
 
     setPokeName(res.name);
-    setPokeId(res.id);
+    setPokeId(id);
     setPokeHeight(res.height / 10);
     setPokeWeight(res.weight / 10);
-    setPokeImg(
-      res.sprites?.versions?.['generation-v']?.['black-white']?.animated
-        .front_default
-    );
-    setType1(res.types?.[0]?.type?.name);
-    setType2(res.types?.[1]?.type?.name);
+
+    setPokeImg(img);
+
+    setType1(t1);
+
+    setType2(t2);
+
     setAbility1(res.abilities?.[0]?.ability?.name);
     setAbility2(res.abilities?.[1]?.ability?.name);
     setHpStat(hp);
@@ -89,16 +97,19 @@ const Card = ({ pokemon, loading }) => {
                       className={`shape ${item.types?.[0]?.type?.name}`}
                     ></div>
                     <div className='card-body'>
-                      <p className='card-id'>#{item.id}</p>
-                      <h5 className='poke-name'>{item.name}</h5>
+                      <div className='name-id-container'>
+                        <p className='card-id'>#{item.id}</p>
+                        <h5 className='poke-name'>{item.name}</h5>
+                      </div>
                       <div className='type-container'>
                         <p
-                          className={`type-pill ${item.types?.[0]?.type?.name}`}
+                          className={`type-pill type1 ${item.types?.[0]?.type?.name}`}
                         >
                           {item.types?.[0]?.type?.name}
                         </p>
                         <p
-                          className={`type-pill ${item.types?.[1]?.type?.name}`}
+                          id='type2'
+                          className={`type-pill type2 ${item.types?.[1]?.type?.name}`}
                         >
                           {item.types?.[1]?.type?.name}
                         </p>
@@ -112,7 +123,7 @@ const Card = ({ pokemon, loading }) => {
       </div>
       <div className='right' id='myNav'>
         <div className='modal-wrapper'>
-          <img src={pokeImg} className='modal-img' alt=''></img>
+          <img src={pokeImg} className='modal-img' id='modal-img' alt=''></img>
 
           <div className='name-id-wrapper'>
             <h2 className='modal-poke-name'>{pokeName}</h2>
