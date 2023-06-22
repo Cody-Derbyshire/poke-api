@@ -7,12 +7,9 @@
   image-rendering: pixelated;
   font-family: 'Josefin Sans', sans-serif;
 }
-.main {
-}
 
 .left {
   height: 100vh;
-  background-color: #f0f1f7;
 }
 
 .right {
@@ -52,7 +49,7 @@
 
 .card-wrapper {
   overflow: auto;
-
+  background-color: #f0f1f7;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
@@ -67,16 +64,20 @@
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
+  border: 2px solid rgba(255, 255, 255, 0.18);
   padding-top: 2.5rem;
   margin-top: 4rem;
-  border-radius: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.625rem;
+
   position: relative;
 }
 
 .poke-name {
   text-align: center;
   font-weight: bold;
+}
+.poke-name::first-letter {
+  text-transform: capitalize;
 }
 
 .poke-card:hover {
@@ -95,6 +96,21 @@
   top: -3.25rem;
 }
 
+.type-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.type-pill {
+  padding: 0.2rem 0.5rem;
+  border-radius: 2rem;
+  width: min-content;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #fff;
+}
+
 .shape {
   display: block;
   width: 80%;
@@ -105,7 +121,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
-  filter: blur(50px);
+  filter: blur(40px);
 }
 
 .poke-content {
@@ -113,9 +129,125 @@
   position: relative;
 }
 
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  padding: 4rem 4rem 1rem;
+  border-radius: 0.625rem;
+  position: relative;
+  gap: 1rem;
+}
+
 .modal-img {
   width: 10rem;
-  margin-bottom: 1rem;
+  margin: 0 auto;
+  position: absolute;
+  top: -5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.name-id-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 2rem;
+  padding: 0.25rem;
+}
+
+.modal-poke-name {
+  font-size: 2rem;
+  padding-top: 0.25rem;
+  margin: 0 auto;
+}
+
+.modal-id {
+  padding: 0.5rem;
+
+  opacity: 0.5;
+  font-size: 1.25rem;
+  border-left: 0.1rem solid rgba(0, 0, 0, 0.25);
+}
+
+.modal-poke-name::first-letter,
+.abilities-names > p::first-letter {
+  text-transform: capitalize;
+}
+
+.modal-type-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-type-pill {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  width: fit-content;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+}
+
+.wh-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.wh-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.abilities-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.abilities-names {
+  display: flex;
+  gap: 1rem;
+}
+
+.stats-wrapper {
+  display: flex;
+}
+
+.stat-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.35rem;
+  border-left: 0.1rem solid rgba(0, 0, 0, 0.1);
+}
+
+.stat-wrapper:first-child {
+  border: none;
+}
+
+.modal-closebtn {
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 2rem;
 }
 
 @media screen and (max-width: 25rem) {
