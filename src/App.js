@@ -2,14 +2,14 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
-
+import ScrollButton from './ScrollButton';
 import axios from 'axios';
 import './style.css';
 
 const App = () => {
   const [pokeData, setPokeData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [url] = useState('https://pokeapi.co/api/v2/pokemon?limit=151');
+  const [url] = useState('https://pokeapi.co/api/v2/pokemon?limit=251');
 
   const pokeFunc = async () => {
     const res = await axios.get(url);
@@ -40,6 +40,7 @@ const App = () => {
     <>
       <div className='main'>
         <Card pokemon={pokeData} loading={loading}></Card>
+        <ScrollButton />
       </div>
     </>
   );

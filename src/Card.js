@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 
+import styled from 'styled-components';
+
 import './style.css';
 import './App.css';
 
@@ -62,15 +64,61 @@ const Card = ({ pokemon, loading }) => {
     openNav();
   };
 
-  /* Open when someone clicks on the span element */
   const openNav = () => {
     document.getElementById('myNav').style.width = '100%';
+    document.getElementById('info-btn').style.color = 'white';
   };
 
-  /* Close when someone clicks on the "x" symbol inside the overlay */
   const closeNav = () => {
     document.getElementById('myNav').style.width = '0%';
+    document.getElementById('info-wrapper').style.display = 'flex';
+    document.getElementById('stats-wrapper').style.display = 'none';
+
+    document.getElementById('stats-btn').classList.remove(`${type1}`);
   };
+
+  const openStats = () => {
+    document.getElementById('info-wrapper').style.display = 'none';
+    document.getElementById('stats-wrapper').style.display = 'flex';
+    document.getElementById('info-btn').classList.toggle(`${type1}`);
+    document.getElementById('stats-btn').classList.toggle(`${type1}`);
+    document.getElementById('stats-btn').style.color = 'white';
+    document.getElementById('info-btn').style.color = 'black';
+  };
+
+  const openInfo = () => {
+    document.getElementById('info-wrapper').style.display = 'flex';
+    document.getElementById('stats-wrapper').style.display = 'none';
+    document.getElementById('info-btn').classList.toggle(`${type1}`);
+    document.getElementById('stats-btn').classList.toggle(`${type1}`);
+    document.getElementById('stats-btn').style.color = 'black';
+    document.getElementById('info-btn').style.color = 'white';
+  };
+
+  const HPBar = styled.div`
+    width: ${hpStat / 1.5}%;
+    height: 0.5rem;
+  `;
+  const ATKBar = styled.div`
+    width: ${atkStat / 1.5}%;
+    height: 0.5rem;
+  `;
+  const DEFBar = styled.div`
+    width: ${defStat / 1.5}%;
+    height: 0.5rem;
+  `;
+  const SPABar = styled.div`
+    width: ${spaStat / 1.5}%;
+    height: 0.5rem;
+  `;
+  const SPDBar = styled.div`
+    width: ${spdStat / 1.5}%;
+    height: 0.5rem;
+  `;
+  const SPEEDBar = styled.div`
+    width: ${speedStat / 1.5}%;
+    height: 0.5rem;
+  `;
 
   return (
     <>
@@ -95,6 +143,9 @@ const Card = ({ pokemon, loading }) => {
                     />
                     <div
                       className={`shape ${item.types?.[0]?.type?.name}`}
+                    ></div>
+                    <div
+                      className={`shape2 ${item.types?.[1]?.type?.name}`}
                     ></div>
                     <div className='card-body'>
                       <div className='name-id-container'>
@@ -134,74 +185,113 @@ const Card = ({ pokemon, loading }) => {
             <p className={`modal-type-pill ${type1}`}>{type1}</p>
             <p className={`modal-type-pill ${type2}`}>{type2}</p>
           </div>
+          <div className='btn-div'>
+            <button
+              id='info-btn'
+              className={`modal-btn-1 ${type1}`}
+              onClick={openInfo}
+            >
+              info
+            </button>
+            <button
+              id='stats-btn'
+              className={`modal-btn-2 .modal-btn-bg`}
+              onClick={openStats}
+            >
+              stats
+            </button>
+          </div>
 
-          <div className='wh-wrapper'>
-            <div className='wh-div'>
-              <p>
-                <strong>Weight</strong>
-              </p>
-              <p>{pokeWeight}kg</p>
+          <div id='info-wrapper' className='wh-abilities-wrapper'>
+            <div className='wh-wrapper'>
+              <div className='wh-div'>
+                <p className='wh-strong'>
+                  <strong>Weight</strong>
+                </p>
+                <p>{pokeWeight}kg</p>
+              </div>
+              <div className='wh-div'>
+                <p className='wh-strong'>
+                  <strong>Height</strong>
+                </p>
+                <p>{pokeHeight}m</p>
+              </div>
             </div>
-            <div className='wh-div'>
+            <div className='abilities-wrapper'>
               <p>
-                <strong>Height</strong>
+                <strong>Abilities</strong>
               </p>
-              <p>{pokeHeight}m</p>
+              <div className='abilities-names'>
+                <p className='ability-name abn-left'>{ability1}</p>
+                <p className='ability-name'>{ability2}</p>
+              </div>
             </div>
           </div>
-          <div className='abilities-wrapper'>
-            <p>
-              <strong>Abilities</strong>
-            </p>
-            <div className='abilities-names'>
-              <p>{ability1}</p>
-              <p>{ability2}</p>
+          <div id='stats-wrapper' className='stats-wrapper'>
+            <div className='stats-top'>
+              <div className='stat-wrapper'>
+                <p className='stat-name'>
+                  <strong>HP</strong>
+                </p>
+                <p className='stat-name'>
+                  <strong>ATK</strong>
+                </p>
+                <p className='stat-name'>
+                  <strong>DEF</strong>
+                </p>
+                <p className='stat-name'>
+                  <strong>SpA</strong>
+                </p>
+                <p className='stat-name'>
+                  <strong>SpD</strong>
+                </p>
+                <p className='stat-name'>
+                  <strong>SPD</strong>
+                </p>
+              </div>
+              <div className='stat-wrapper'>
+                <p className='stat-number'>{hpStat}</p>
+                <p className='stat-number'>{atkStat}</p>
+                <p className='stat-number'>{defStat}</p>
+                <p className='stat-number'>{spaStat}</p>
+                <p className='stat-number'>{spdStat}</p>
+                <p className='stat-number'>{speedStat}</p>
+              </div>
+              <div className='statbar-stack'>
+                <div className='stat-bar-wrapper'>
+                  <HPBar className={`stat-bar ${type1}`} />
+                  <div className='stat-bar-empty'></div>
+                </div>
+                <div className='stat-bar-wrapper'>
+                  <ATKBar className={`stat-bar ${type1}`} />
+                  <div className='stat-bar-empty'></div>
+                </div>
+                <div className='stat-bar-wrapper'>
+                  <DEFBar className={`stat-bar ${type1}`} />
+                  <div className='stat-bar-empty'></div>
+                </div>
+                <div className='stat-bar-wrapper'>
+                  <SPABar className={`stat-bar ${type1}`} />
+                  <div className='stat-bar-empty'></div>
+                </div>
+                <div className='stat-bar-wrapper'>
+                  <SPDBar className={`stat-bar ${type1}`} />
+                  <div className='stat-bar-empty'></div>
+                </div>
+                <div className='stat-bar-wrapper'>
+                  <SPEEDBar className={`stat-bar ${type1}`} />
+                  <div className='stat-bar-empty'></div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className='stats-wrapper'>
-            <div className='stat-wrapper'>
-              <p className='stat-name'>
-                <strong>HP</strong>
-              </p>
-              <p className='stat-number'>{hpStat}</p>
-            </div>
-            <div className='stat-wrapper'>
-              <p className='stat-name'>
-                <strong>ATK</strong>
-              </p>
-              <p className='stat-number'>{atkStat}</p>
-            </div>
-            <div className='stat-wrapper'>
-              <p className='stat-name'>
-                <strong>DEF</strong>
-              </p>
-              <p className='stat-number'>{defStat}</p>
-            </div>
-            <div className='stat-wrapper'>
-              <p className='stat-name'>
-                <strong>SpA</strong>
-              </p>
-              <p className='stat-number'>{spaStat}</p>
-            </div>
-            <div className='stat-wrapper'>
-              <p className='stat-name'>
-                <strong>SpD</strong>
-              </p>
-              <p className='stat-number'>{spdStat}</p>
-            </div>
-            <div className='stat-wrapper'>
-              <p className='stat-name'>
-                <strong>SPD</strong>
-              </p>
-              <p className='stat-number'>{speedStat}</p>
-            </div>
-            <div className='stat-wrapper'>
+            <div className='total-wrapper'>
               <p className='stat-name'>
                 <strong>TOT</strong>
               </p>
               <p className='stat-number'>{totalStat}</p>
             </div>
           </div>
+
           {/* eslint-disable-next-line */}
           <a className='modal-closebtn' onClick={closeNav}>
             close
